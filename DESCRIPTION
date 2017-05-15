@@ -9,3 +9,4 @@ License: What license is it under?
 LazyData: TRUE
 URL:http://github.com/ShinsukeSakai0321/LimitState
 BugReports:http://github.com/ShinsukeSakai0321/LimitState/issues
+Imports: R6,evd
