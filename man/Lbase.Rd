@@ -20,10 +20,13 @@ Public function
 \tabular{lll}{
 \bold{function} \tab \bold{contents} \tab \bold{variable(s)}\cr
 initialize(n) \tab initializes the object \tab n:number of variables\cr
+GetN() \tab returns the number of variables \tab \cr
 GetX() \tab returns the variable list \bold{X} \tab \cr
-SetX(x) \tab sets variable list \bold{x} to the variable list \bold{X} \tab \cr
+SetX(x) \tab sets variable list \bold{x} to the variable list \bold{X} \tab x: variable list\cr
 GetG() \tab returns calculated g value \tab \cr
-GetdGdX() \tab returns differential variable value list \bold{dGdX} \tab
+SetG(g) \tab sets calculated g-value to the variable \tab g:calculated g \cr
+GetdGdX() \tab returns differential variable value list \bold{dGdX} \tab \cr
+SetdGdX(x) \tab sets differintial variable list \bold{dGdX} \tab x: \bold{dGdX list}
 }
 }
 
@@ -50,31 +53,36 @@ GPRSMED <- R6::R6Class("GPRSMED",
                    inherit=Lbase,
                    public = list(
                      gcalc = function(){
-                       As <- private$X[1]
-                       fy <- private$X[2]
-                       fcd <- private$X[3]
-                       b <- private$X[4]
-                       d <- private$X[5]
-                       eta <- private$X[6]
-                       M <- private$X[7]
-                       private$g <- As*fy*d*(1.0-eta*As*fy/b/d/fcd)-M
+                       X <- super$GetX()
+                       As <- X[1]
+                       fy <- X[2]
+                       fcd <- X[3]
+                       b <- X[4]
+                       d <- X[5]
+                       eta <- X[6]
+                       M <- X[7]
+                       g <- As*fy*d*(1.0-eta*As*fy/b/d/fcd)-M
+                       super$SetG(g)
                      } ,
                      dGdXcalc = function(){
-                       As <- private$X[1]
-                       fy <- private$X[2]
-                       fcd <- private$X[3]
-                       b <- private$X[4]
-                       d <- private$X[5]
-                       eta <- private$X[6]
-                       M <- private$X[7]
-                       private$dGdX[1] <- fy * d * (1 - eta * As * fy/b/d/fcd) - As * fy * d * (eta * fy/b/d/fcd)
-                       private$dGdX[2] <- As * d * (1 - eta * As * fy/b/d/fcd) - As * fy * d * (eta * As/b/d/fcd)
-                       private$dGdX[3] <- As * fy * d * (eta * As * fy/b/d/fcd^2)
-                       private$dGdX[4] <- As * fy * d * (eta * As * fy/b^2/d/fcd)
-                       private$dGdX[5] <- As * fy * (1 - eta * As * fy/b/d/fcd) + As * fy * d * (eta *
+                       X <- super$GetX()
+                       dGdX <- super$GetdGdX()
+                       As <- X[1]
+                       fy <- X[2]
+                       fcd <- X[3]
+                       b <- X[4]
+                       d <- X[5]
+                       eta <- X[6]
+                       M <- X[7]
+                       dGdX[1] <- fy * d * (1 - eta * As * fy/b/d/fcd) - As * fy * d * (eta * fy/b/d/fcd)
+                       dGdX[2] <- As * d * (1 - eta * As * fy/b/d/fcd) - As * fy * d * (eta * As/b/d/fcd)
+                       dGdX[3] <- As * fy * d * (eta * As * fy/b/d/fcd^2)
+                       dGdX[4] <- As * fy * d * (eta * As * fy/b^2/d/fcd)
+                       dGdX[5] <- As * fy * (1 - eta * As * fy/b/d/fcd) + As * fy * d * (eta *
                                                                                                    As * fy/b/d^2/fcd)
-                       private$dGdX[6] <- -(As * fy * d * (As * fy/b/d/fcd))
-                       private$dGdX[7] <- -1
+                       dGdX[6] <- -(As * fy * d * (As * fy/b/d/fcd))
+                       dGdX[7] <- -1
+                       super$SetdGdX(dGdX)
                      }
                    )
 

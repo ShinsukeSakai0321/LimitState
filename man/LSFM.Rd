@@ -20,6 +20,8 @@ Public function
 \tabular{lll}{
 \bold{function} \tab \bold{contents} \tab \bold{variable(s)}\cr
 initialize(name,n,Mu,sigmmaX,dist) \tab initializes the object \tab name: name of the subject,n:number of variables, Mu:list of mean values of variables, sigmmaX: list of std. values of variables,dist: list of distribution names(characters)\cr
+GetN() \tab returns the number of variables \tab \cr
+DefineG(glim) \tab difines control class for G-calculation \tab glim: object of g-definition class which is inheritted class of Lbase \cr
 GetMu() \tab returns  list of mean values of variables \tab \cr
 GetSigm() \ tab returns list of std. values of variables \tab \cr
 GetBeta() \tab retuns reliability index \tab \cr
@@ -60,7 +62,7 @@ PRSMED <- R6::R6Class("PRSMED",
                      inherit=LSFM,
                      public = list(
                        Calc = function(){
-                         private$lim <- GPRSMED$new(private$n)
+                         super$DefineG(GPRSMED$new(super$GetN()))
                          super$RF()
                        }
                      )

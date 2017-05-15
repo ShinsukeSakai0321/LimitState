@@ -8,12 +8,17 @@ Lbase <- R6::R6Class("Lbase",
                      private$X <- numeric(n)
                      private$dGdX <- numeric(n)
                    },
+                   GetN = function(){private$n},
                    GetX = function(){private$X},
                    SetX = function(X){
                      private$X <- X
                    },
                    GetG = function(){private$g},
-                   GetdGdX = function(){private$dGdX}
+                   SetG = function(g){private$g <- g},
+                   GetdGdX = function(){private$dGdX},
+                   SetdGdX = function(x){
+                     private$dGdX <- x
+                   }
                  ),
                  private = list(
                    n = 0,   # Number of variables
@@ -44,6 +49,7 @@ LSFM <- R6::R6Class("LSFM",
                       if(private$dist[i]=="weibull")private$Distr=c(private$Distr,GWeibull$new(private$muX[i],private$sigmmaX[i]))
                     }
                   },
+                  GetN = function()private$n,
                   GetMu = function()private$muX,
                   SetMu = function(aa){private$muX <- aa},
                   RF = function(){
@@ -130,6 +136,7 @@ LSFM <- R6::R6Class("LSFM",
                   GetPOF = function()private$POF,
                   GetDP = function()private$DP,
                   GetConv = function()private$ncon,
+                  DefineG = function(glim){private$lim <- glim},
                   GetG = function(){
                     #added by S.sakai 2017.4.13
                     #平均値位置でのg()の計算値を返す，負のとき破損領域にある
