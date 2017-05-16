@@ -32,8 +32,7 @@ GeneralG <- R6::R6Class("GeneralG",
                             expr <- parse(text=private$gg)
                             for(i in 1:private$n){
                               dstr1 <- D(expr,private$var[i])
-                              dexpr <- as.expression(dstr1)
-                              dGdX[i] <- eval(dexpr)
+                              dGdX[i] <- eval(dstr1)
                             }
                             super$SetdGdX(dGdX)
                           }

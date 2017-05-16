@@ -1,3 +1,8 @@
+LimitState 0.1.3
+========================================================
+### Minor improvements
+* Programming of GeneralG class was improved. Especially, the execution for the result of D(*,*) was directly substituted to the function eval().
+
 LimitState 0.1.2
 ========================================================
 ### New features
