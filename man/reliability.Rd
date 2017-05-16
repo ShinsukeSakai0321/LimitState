@@ -58,7 +58,12 @@ Shinsuke Sakai
 Returned object is GeneralTreat class which is inheritted from LSFM class. As for public function of LSFM class, see LSFM class by help command.
 }
 \examples{
-# Example
+#Example1
+aa <- reliability()
+aa$GetPOF()
+# correct answer  3.872108e-06
+#
+# Example2
 #"Probability, Reliability and Statistical Methods in
 #  Engineering Design"
 # Achintya Haldar  & Sankaran Mahadevan
