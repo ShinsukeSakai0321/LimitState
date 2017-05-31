@@ -57,7 +57,7 @@ GGumbel <- R6::R6Class("GGumbel",
                        c(mu, sigm)
                      },
                      Param = function(){
-                       private$eta <- sqrt(6.) * private$sigmmaX /pi #scale
+                       private$eta <- sqrt(6.) * private$sigmmaX /pi #shape
                        private$mu <- private$muX - 0.57722 * private$eta #loc
                        c(private$mu,private$eta)
                      },

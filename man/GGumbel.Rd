@@ -41,7 +41,7 @@ Class 'R6ClassGenerator' <GGumbel> object generator
 #fundamental usage
 gum<-GGumbel$new(mu=1.0,sigmma=0.1)
 res<-gum$Param()
-cat("Shape=",res[1],",Location=",res[2])
+cat("Shape=",res[2],",Location=",res[1])
 #example: giving loc and scale parameters and returning mu,sigm
 loc<-0.05; shape<-0.8
 res2<-gum$MuSigm(mu=loc,eta=shape)
