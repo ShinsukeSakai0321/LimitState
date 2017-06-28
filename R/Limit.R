@@ -136,6 +136,9 @@ LSFM <- R6::R6Class("LSFM",
                   GetPOF = function()private$POF,
                   GetDP = function()private$DP,
                   GetConv = function()private$ncon,
+                  GetPSF = function(){
+                    private$DP/private$muX
+                  },
                   DefineG = function(glim){private$lim <- glim},
                   GetG = function(){
                     #added by S.sakai 2017.4.13

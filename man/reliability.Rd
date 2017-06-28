@@ -36,10 +36,13 @@ reliability(g = "R-S", var = c("R", "S"), dist = c("normal", "normal"), muX = c(
 \value{
 %%  ~Describe the value returned
 %%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+\item{GetPOF() }{returns POF value}
+\item{GetAlpha() }{returns Alpha vector}
+\item{GetBeta()}{returns reliability index}
+\item{GetDP()}{returns Design Points}
+\item{GetPSF()}{returns PSF vector}
 }
+%% ...
 \references{
 %% ~put references to the literature/web site here ~
 }
@@ -61,6 +64,10 @@ Returned object is GeneralTreat class which is inheritted from LSFM class. As fo
 #Example1
 aa <- reliability()
 aa$GetPOF()
+aa$GetAlpha()
+aa$GetBeta()
+aa$GetDP()
+aa$GetPSF()
 # correct answer  3.872108e-06
 #
 # Example2
@@ -88,6 +95,48 @@ a4 <- aa$GetBeta()
 c(a1,a2,a3,a4)
 #expected output
 # 3.833028 3.761254 4.387684 4.090647
+#Example3
+# Checking lack of invariance
+aa<-reliability()
+bb<-reliability(g="1-R/S")
+cc<-reliability(g="log(R)-log(S)")
+aa$GetBeta()
+bb$GetBeta()
+cc$GetBeta()
+#Example in text p.Basic2.30
+aa<-reliability( muX = c(400, 300), sigmmaX = c(20, 30))
+aa$GetBeta()
+#correct answer:  2.773501
+#Example in text p.Basic2.37
+g<-"Sb*A-P"
+var <- c("Sb","A","P")
+muX <- c(400, 100*10*10, 3000e3)
+sigmmaX <- c(20, 5*10*10, 300e3)
+dist <- c("normal", "normal", "normal" )
+aa <-reliability(g=g,var=var,dist=dist,muX=muX,sigmmaX=sigmmaX)
+aa$GetBeta()
+aa$GetAlpha()
+aa$GetDP()
+#Correct answer
+#> aa$GetBeta()
+#[1] 2.458772
+#> aa$GetAlpha()
+#[1]  0.4696243  0.4696243 -0.7476002
+#> aa$GetDP()
+#[1]     376.906    9422.650 3551453.579
+#Example in text p.Basic2.44
+aa<-reliability( muX = c(400, 300), sigmmaX = c(20, 30))
+aa$GetPSF()
+#[1] 0.9230769 1.2307692
+#Example in text Basic3.12
+dist <- c("lognormal", "normal" )
+aa<-reliability(dist=dist, muX = c(40, 25), sigmmaX = c(4, 5))
+aa$GetBeta()
+aa$GetPOF()
+#> aa$GetBeta()
+#[1] 2.377765
+#> aa$GetPOF()
+#[1] 0.008708954
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

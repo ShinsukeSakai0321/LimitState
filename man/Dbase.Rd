@@ -1,7 +1,7 @@
 \name{Dbase}
 \alias{Dbase}
 %- Also NEED an '\alias' for EACH other topic documented here.
-Dbase
+
 \title{
 %%  ~~function to do ... ~~
 Dbase
