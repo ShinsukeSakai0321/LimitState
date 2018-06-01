@@ -58,6 +58,50 @@ Shinsuke Sakai, Takuyo Kaida
 }
 \examples{
 #Example of Lbase must be executed before this example.
+#Example of Lbase must be executed before this example.
+# Example
+#"Probability, Reliability and Statistical Methods in
+#  Engineering Design"
+# Achintya Haldar  & Sankaran Mahadevan
+#  P.218 Table 7.5, 7.6
+GPRSMED <- R6::R6Class("GPRSMED",
+                       inherit=Lbase,
+                       public = list(
+                         gcalc = function(){
+                           X <- super$GetX()
+                           As <- X[1]
+                           fy <- X[2]
+                           fcd <- X[3]
+                           b <- X[4]
+                           d <- X[5]
+                           eta <- X[6]
+                           M <- X[7]
+                           g <- As*fy*d*(1.0-eta*As*fy/b/d/fcd)-M
+                           super$SetG(g)
+                         } ,
+                         dGdXcalc = function(){
+                           X <- super$GetX()
+                           dGdX <- super$GetdGdX()
+                           As <- X[1]
+                           fy <- X[2]
+                           fcd <- X[3]
+                           b <- X[4]
+                           d <- X[5]
+                           eta <- X[6]
+                           M <- X[7]
+                           dGdX[1] <- fy * d * (1 - eta * As * fy/b/d/fcd) - As * fy * d * (eta * fy/b/d/fcd)
+                           dGdX[2] <- As * d * (1 - eta * As * fy/b/d/fcd) - As * fy * d * (eta * As/b/d/fcd)
+                           dGdX[3] <- As * fy * d * (eta * As * fy/b/d/fcd^2)
+                           dGdX[4] <- As * fy * d * (eta * As * fy/b^2/d/fcd)
+                           dGdX[5] <- As * fy * (1 - eta * As * fy/b/d/fcd) + As * fy * d * (eta *
+                                                                                               As * fy/b/d^2/fcd)
+                           dGdX[6] <- -(As * fy * d * (As * fy/b/d/fcd))
+                           dGdX[7] <- -1
+                           super$SetdGdX(dGdX)
+                         }
+                       )
+
+)
 PRSMED <- R6::R6Class("PRSMED",
                      inherit=LSFM,
                      public = list(
