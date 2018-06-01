@@ -33,7 +33,7 @@ LSFM <- R6::R6Class("LSFM",
                   name=NA,
                   initialize = function(name,n,Mu,sigmmaX,dist){
                     if(!missing(name))self$name <- name
-                    private$n <- n
+                    private$n <- n  #Number of parameters
                     private$muX <- Mu
                     private$sigmmaX <- sigmmaX
                     private$dist <- dist
