@@ -129,14 +129,13 @@ GPRSMED <- R6::R6Class("GPRSMED",
                            d <- X[5]
                            eta <- X[6]
                            M <- X[7]
-                           dGdX[1] <- fy * d * (1 - eta * As * fy/b/d/fcd) - As * fy * d * (eta * fy/b/d/fcd)
-                           dGdX[2] <- As * d * (1 - eta * As * fy/b/d/fcd) - As * fy * d * (eta * As/b/d/fcd)
-                           dGdX[3] <- As * fy * d * (eta * As * fy/b/d/fcd^2)
-                           dGdX[4] <- As * fy * d * (eta * As * fy/b^2/d/fcd)
-                           dGdX[5] <- As * fy * (1 - eta * As * fy/b/d/fcd) + As * fy * d * (eta *
-                                                                                               As * fy/b/d^2/fcd)
-                           dGdX[6] <- -(As * fy * d * (As * fy/b/d/fcd))
-                           dGdX[7] <- -1
+                           dGdX[1] <- eval(D(dd,"As"))
+                           dGdX[2] <- eval(D(dd,"fy"))
+                           dGdX[3] <- eval(D(dd,"fcd"))
+                           dGdX[4] <- eval(D(dd,"b"))
+                           dGdX[5] <- eval(D(dd,"d"))
+                           dGdX[6] <- eval(D(dd,"eta"))
+                           dGdX[7] <- eval(D(dd,"M"))
                            super$SetdGdX(dGdX)
                          }
                        )
