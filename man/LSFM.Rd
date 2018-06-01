@@ -57,6 +57,47 @@ Shinsuke Sakai, Takuyo Kaida
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
+# Most simple example
+# Definition of G and dGdX
+GRS <- R6::R6Class("GRS",
+                       inherit=Lbase,
+                       public=list(
+                         gcalc = function(){
+                           X <- super$GetX()
+                           R <- X[1]
+                           S <- X[2]
+                           g<- R-S
+                           super$SetG(g)
+                         },
+                         dGdXcalc = function(){
+                           X <- super$GetX()
+                           dGdX <- super$GetdGdX()
+                           dGdX[1] <- 1
+                           dGdX[2] <- -1
+                           super$SetdGdX(dGdX)
+                         }
+                       )
+                       )
+# Reliability Analysis
+Sexample <- R6::R6Class("Sexample",
+                        inherit=LSFM,
+                        public= list(
+                          Calc=function(){
+                            super$DefineG(GRS$new(super$GetN()))
+                            super$RF()
+                          }
+                        )
+                        )
+####main###
+muX<-c(200,100)
+sigmmaX<-c(10,20)
+dist <- c("normal", "normal")
+exam <- Sexample$new("Sexample",2,muX,sigmmaX,dist)
+exam$Calc()
+exam$GetPOF()
+# correct answer  3.872108e-06
+
+
 #Example of Lbase must be executed before this example.
 # Example
 #"Probability, Reliability and Statistical Methods in
