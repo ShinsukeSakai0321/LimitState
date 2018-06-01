@@ -129,6 +129,7 @@ GPRSMED <- R6::R6Class("GPRSMED",
                            d <- X[5]
                            eta <- X[6]
                            M <- X[7]
+                           dd<-expression(As*fy*d*(1.0-eta*As*fy/b/d/fcd)-M)
                            dGdX[1] <- eval(D(dd,"As"))
                            dGdX[2] <- eval(D(dd,"fy"))
                            dGdX[3] <- eval(D(dd,"fcd"))
