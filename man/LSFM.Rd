@@ -58,7 +58,6 @@ Shinsuke Sakai, Takuyo Kaida
 }
 \examples{
 #Example of Lbase must be executed before this example.
-#Example of Lbase must be executed before this example.
 # Example
 #"Probability, Reliability and Statistical Methods in
 #  Engineering Design"
