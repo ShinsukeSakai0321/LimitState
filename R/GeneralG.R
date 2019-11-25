@@ -46,7 +46,7 @@ GeneralG <- R6::R6Class("GeneralG",
 GeneralTreat <- R6::R6Class("GeneralTreat",
                             inherit=LSFM,
                             public = list(
-                              initialize = function(g,var,Mu,sigmmaX,dist){
+                              initialize = function(g,var,dist,Mu,sigmmaX){
                                 n <- length(var)
                                 private$g <- g
                                 private$var <- var

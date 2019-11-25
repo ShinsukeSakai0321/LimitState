@@ -1,10 +1,10 @@
 Package: LimitState
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Package supporting FORM approach
 Version: 0.1.3
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
+Author: Shinsuke Sakai
+Maintainer: Shinsuke Sakai <sakai@fml.t.u-tokyo.ac.jp>
+Description: Package supporting limit state function method
 License: What license is it under?
 LazyData: TRUE
 URL:http://github.com/ShinsukeSakai0321/LimitState

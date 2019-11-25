@@ -41,7 +41,21 @@ GLognormal <- R6::R6Class("GLognormal",
                           sigm <- phi / fXi
                           mu <- X - qnorm(plnorm(X, lambda, zeta)) * sigm
                           c(mu, sigm)
+                        },
+                        Param = function(){
+                          private$zeta <- sqrt(log(1+ (private$sigmmaX / private$muX)**2))
+                          private$lambda <- log(private$muX) - 0.5 * private$zeta*private$zeta
+                          c(private$zeta,private$lambda)
+                        },
+                        SetParam = function(lambda,zeta){
+                          private$muX <-exp(lambda+zeta*zeta/2.0)
+                          private$sigmmaX <- sqrt(private$muX*private$muX*(exp(zeta*zeta)-1.0))
+                          c(private$muX,private$sigmmaX)
                         }
+                      ),
+                      private = list(
+                        lambda=0.0,
+                        zeta=0.0
                       )
 )
 GGumbel <- R6::R6Class("GGumbel",
