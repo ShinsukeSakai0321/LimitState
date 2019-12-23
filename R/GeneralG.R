@@ -46,11 +46,11 @@ GeneralG <- R6::R6Class("GeneralG",
 GeneralTreat <- R6::R6Class("GeneralTreat",
                             inherit=LSFM,
                             public = list(
-                              initialize = function(g,var,dist,Mu,sigmmaX){
+                              initialize = function(g,var,dist,muX,sigmmaX){
                                 n <- length(var)
                                 private$g <- g
                                 private$var <- var
-                                super$initialize("GeneralTreat",n,Mu,sigmmaX,dist)
+                                super$initialize("GeneralTreat",n,muX,sigmmaX,dist)
                               },
                               Calc = function(){
                                 gg <- LimitState::GeneralG$new(private$g,private$var)

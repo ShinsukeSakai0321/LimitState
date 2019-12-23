@@ -103,6 +103,7 @@ cc<-reliability(g="log(R)-log(S)")
 aa$GetBeta()
 bb$GetBeta()
 cc$GetBeta()
+##########################
 #Example in text p.Basic2.30
 aa<-reliability( muX = c(400, 300), sigmmaX = c(20, 30))
 aa$GetBeta()
@@ -124,10 +125,12 @@ aa$GetDP()
 #[1]  0.4696243  0.4696243 -0.7476002
 #> aa$GetDP()
 #[1]     376.906    9422.650 3551453.579
+############################
 #Example in text p.Basic2.44
 aa<-reliability( muX = c(400, 300), sigmmaX = c(20, 30))
 aa$GetPSF()
 #[1] 0.9230769 1.2307692
+############################
 #Example in text Basic3.12
 dist <- c("lognormal", "normal" )
 aa<-reliability(dist=dist, muX = c(40, 25), sigmmaX = c(4, 5))
